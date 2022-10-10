@@ -87,3 +87,19 @@ You can find here a list of the notebooks on Japanese NLP using pre-trained mode
 | [Embedding visualization](https://github.com/taishi-i/nagisa_bert/blob/develop/notebooks/embedding_visualization-japanese_bert_models.ipynb)  | Show how to visualize embeddings from Japanese pre-trained models. |[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/taishi-i/nagisa_bert/blob/develop/notebooks/embedding_visualization_japanese_bert_models.ipynb)|
 | [How to fine-tune a model on text classification](https://github.com/taishi-i/nagisa_bert/blob/develop/notebooks/text_classification-amazon_reviews_ja.ipynb)  | Show how to fine-tune a pretrained model on a Japanese text classification task. |[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/taishi-i/nagisa_bert/blob/develop/notebooks/text_classification-amazon_reviews_ja.ipynb)|
 | [How to fine-tune a model on text classification with csv files](https://github.com/taishi-i/nagisa_bert/blob/develop/notebooks/text_classification-csv_files.ipynb)  | Show how to preprocess the data and fine-tune a pretrained model on a Japanese text classification task. |[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/taishi-i/nagisa_bert/blob/develop/notebooks/text_classification-csv_files.ipynb)|
+
+
+## Model description
+
+### Architecture
+
+The model architecture is the same as [the BERT bert-base-uncased architecture](https://huggingface.co/bert-base-uncased) (12 layers, 768 dimensions of hidden states, and 12 attention heads).
+
+### Training Data
+
+The models is trained on the Japanese version of Wikipedia. The training corpus is generated from the Wikipedia Cirrussearch dump file as of August 8, 2022 with [make_corpus_wiki.py](https://github.com/cl-tohoku/bert-japanese/blob/main/make_corpus_wiki.py) and [create_pretraining_data.py](https://github.com/cl-tohoku/bert-japanese/blob/main/create_pretraining_data.py).
+
+### Training
+
+The model is trained with the default parameters of [transformers.BertConfig](https://huggingface.co/docs/transformers/model_doc/bert#transformers.BertConfig).
+Due to GPU memory limitations, the batch size is set to small; 16 instances per batch, and 2M training steps.
