@@ -74,3 +74,11 @@ tensor([[[-0.2912, -0.6818, -0.4097,  ...,  0.0262, -0.3845,  0.5816],
          [-0.2505, -0.6574, -0.0523,  ...,  0.9082,  0.5851,  1.2625]]],
        grad_fn=<NativeLayerNormBackward0>)
 ```
+
+## Tutorial
+
+You can find here a list of the notebooks on Japanese NLP using pre-trained models and transformers.
+
+| Notebook     |      Description      |   |
+|:----------|:-------------||------:|
+| [Fill-mask](https://github.com/taishi-i/nagisa_bert/blob/develop/notebooks/fill_mask-japanese_bert_models.ipynb)  | How to use the pipeline function in transformers to fill in the Japanese text |[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/taishi-i/nagisa_bert/blob/develop/notebooks/fill_mask-japanese_bert_models.ipynb)|
