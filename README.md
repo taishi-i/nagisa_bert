@@ -6,6 +6,9 @@
 This library provides a tokenizer to use [a Japanese BERT model](https://huggingface.co/taishi-i/nagisa_bert) for [nagisa](https://github.com/taishi-i/nagisa).
 The model is available in [Transformers](https://github.com/huggingface/transformers) 🤗.
 
+You can try fill-mask using nagisa_bert at [Hugging Face Space](https://huggingface.co/spaces/taishi-i/nagisa_bert-fill_mask).
+
+
 ## Install
 
 Python 3.7+ on Linux or macOS is required.
