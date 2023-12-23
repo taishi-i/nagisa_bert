@@ -6,17 +6,14 @@
 # https://github.com/WorksApplications/SudachiTra/blob/dbcaf5c851fe817bead20acf3958e50c93b0118c/sudachitra/tokenization_bert_sudachipy.py
 """Tokenization classes for nagisa BERT."""
 
-import os
 import copy
-
+import os
 from collections import OrderedDict
 from typing import Dict, List, Optional, Tuple
 
 import nagisa
-
-from transformers.tokenization_utils import PreTrainedTokenizer
 from transformers.models.bert.tokenization_bert import WordpieceTokenizer
-
+from transformers.tokenization_utils import PreTrainedTokenizer
 
 VOCAB_FILES_NAMES = {"vocab_file": "vocab.txt"}
 
@@ -117,20 +114,7 @@ class NagisaBertTokenizer(PreTrainedTokenizer):
         nagisa_kwargs=None,
         **kwargs,
     ):
-        super().__init__(
-            do_lower_case=do_lower_case,
-            do_word_tokenize=do_word_tokenize,
-            do_subword_tokenize=do_subword_tokenize,
-            word_tokenizer_type=word_tokenizer_type,
-            subword_tokenizer_type=subword_tokenizer_type,
-            unk_token=unk_token,
-            sep_token=sep_token,
-            pad_token=pad_token,
-            cls_token=cls_token,
-            mask_token=mask_token,
-            nagisa_kwargs=nagisa_kwargs,
-            **kwargs,
-        )
+        self._unk_token = unk_token
 
         if not os.path.isfile(vocab_file):
             raise ValueError(f"Can't find a vocabulary file at path '{vocab_file}'.")
@@ -169,6 +153,21 @@ class NagisaBertTokenizer(PreTrainedTokenizer):
                 raise ValueError(
                     f"Invalid subword_tokenizer_type '{subword_tokenizer_type}' is specified."
                 )
+
+        super().__init__(
+            do_lower_case=do_lower_case,
+            do_word_tokenize=do_word_tokenize,
+            do_subword_tokenize=do_subword_tokenize,
+            word_tokenizer_type=word_tokenizer_type,
+            subword_tokenizer_type=subword_tokenizer_type,
+            unk_token=unk_token,
+            sep_token=sep_token,
+            pad_token=pad_token,
+            cls_token=cls_token,
+            mask_token=mask_token,
+            nagisa_kwargs=nagisa_kwargs,
+            **kwargs,
+        )
 
     @property
     def do_lower_case(self):
