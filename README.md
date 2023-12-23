@@ -24,13 +24,16 @@ $ pip install nagisa_bert
 This model is available in Transformer's pipeline method.
 
 ```python
->>> from transformers import pipeline
->>> from nagisa_bert import NagisaBertTokenizer
+from transformers import pipeline
+from nagisa_bert import NagisaBertTokenizer
 
->>> text = "nagisaで[MASK]できるモデルです"
->>> tokenizer = NagisaBertTokenizer.from_pretrained("taishi-i/nagisa_bert")
->>> fill_mask = pipeline("fill-mask", model='taishi-i/nagisa_bert', tokenizer=tokenizer)
->>> print(fill_mask(text))
+text = "nagisaで[MASK]できるモデルです"
+tokenizer = NagisaBertTokenizer.from_pretrained("taishi-i/nagisa_bert")
+fill_mask = pipeline("fill-mask", model='taishi-i/nagisa_bert', tokenizer=tokenizer)
+print(fill_mask(text))
+```
+
+```python
 [{'score': 0.1385931372642517,
   'sequence': 'nagisa で 使用 できる モデル です',
   'token': 8092,
@@ -56,18 +59,21 @@ This model is available in Transformer's pipeline method.
 Tokenization and vectorization.
 
 ```python
->>> from transformers import BertModel
->>> from nagisa_bert import NagisaBertTokenizer
+from transformers import BertModel
+from nagisa_bert import NagisaBertTokenizer
 
->>> text = "nagisaで[MASK]できるモデルです"
->>> tokenizer = NagisaBertTokenizer.from_pretrained("taishi-i/nagisa_bert")
->>> tokens = tokenizer.tokenize(text)
->>> print(tokens)
-['na', '##g', '##is', '##a', 'で', '[MASK]', 'できる', 'モデル', 'です']
+text = "nagisaで[MASK]できるモデルです"
+tokenizer = NagisaBertTokenizer.from_pretrained("taishi-i/nagisa_bert")
+tokens = tokenizer.tokenize(text)
+print(tokens)
+# ['na', '##g', '##is', '##a', 'で', '[MASK]', 'できる', 'モデル', 'です']
 
->>> model = BertModel.from_pretrained("taishi-i/nagisa_bert")
->>> h = model(**tokenizer(text, return_tensors="pt")).last_hidden_state
->>> print(h)
+model = BertModel.from_pretrained("taishi-i/nagisa_bert")
+h = model(**tokenizer(text, return_tensors="pt")).last_hidden_state
+print(h)
+```
+
+```python
 tensor([[[-0.2912, -0.6818, -0.4097,  ...,  0.0262, -0.3845,  0.5816],
          [ 0.2504,  0.2143,  0.5809,  ..., -0.5428,  1.1805,  1.8701],
          [ 0.1890, -0.5816, -0.5469,  ..., -1.2081, -0.2341,  1.0215],
