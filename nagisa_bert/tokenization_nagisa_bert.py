@@ -12,7 +12,10 @@ from collections import OrderedDict
 from typing import Dict, List, Optional, Tuple
 
 import nagisa
-from transformers.models.bert.tokenization_bert import WordpieceTokenizer
+try:
+    from transformers.models.bert.tokenization_bert import WordpieceTokenizer
+except ImportError:
+    from transformers.models.bert.tokenization_bert_legacy import WordpieceTokenizer
 from transformers.tokenization_utils import PreTrainedTokenizer
 
 VOCAB_FILES_NAMES = {"vocab_file": "vocab.txt"}
@@ -97,6 +100,7 @@ class NagisaBertTokenizer(PreTrainedTokenizer):
     pretrained_vocab_files_map = PRETRAINED_VOCAB_FILES_MAP
     pretrained_init_configuration = PRETRAINED_INIT_CONFIGURATION
     max_model_input_sizes = PRETRAINED_POSITIONAL_EMBEDDINGS_SIZES
+    model_input_names = ["input_ids", "token_type_ids", "attention_mask"]
 
     def __init__(
         self,
@@ -114,8 +118,6 @@ class NagisaBertTokenizer(PreTrainedTokenizer):
         nagisa_kwargs=None,
         **kwargs,
     ):
-        self._unk_token = unk_token
-
         if not os.path.isfile(vocab_file):
             raise ValueError(f"Can't find a vocabulary file at path '{vocab_file}'.")
 
@@ -147,7 +149,7 @@ class NagisaBertTokenizer(PreTrainedTokenizer):
         if do_subword_tokenize:
             if subword_tokenizer_type == "wordpiece":
                 self.subword_tokenizer = WordpieceTokenizer(
-                    vocab=self.vocab, unk_token=self.unk_token
+                    vocab=self.vocab, unk_token=str(unk_token)
                 )
             else:
                 raise ValueError(
