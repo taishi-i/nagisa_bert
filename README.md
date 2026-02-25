@@ -11,13 +11,18 @@ You can try fill-mask using nagisa_bert at [Hugging Face Space](https://huggingf
 
 ## Install
 
-Python 3.7+ on Linux or macOS is required.
 You can install *nagisa_bert* by using the *pip* command.
 
 
 ```bash
 $ pip install nagisa_bert
 ```
+
+Supported Platforms:
+- 🐧 Linux: Python 3.6 - 3.14
+- 🍎 macOS: Python 3.9 - 3.14
+- 🪟 Windows: Python 3.9 - 3.14
+
 
 ## Usage
 
