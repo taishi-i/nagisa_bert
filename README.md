@@ -15,13 +15,11 @@ You can install *nagisa_bert* by using the *pip* command.
 
 
 ```bash
-$ pip install nagisa_bert
+pip install nagisa_bert
 ```
 
 Supported Platforms:
-- 🐧 Linux: Python 3.6 - 3.14
-- 🍎 macOS: Python 3.9 - 3.14
-- 🪟 Windows: Python 3.9 - 3.14
+- 🐧 Linux, 🍎 macOS, 🪟 Windows: Python 3.10 - 3.14
 
 
 ## Usage
